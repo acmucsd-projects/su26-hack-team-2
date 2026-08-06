@@ -8,6 +8,7 @@ export type Json =
 
 export interface Database {
   public: {
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     Tables: {
       // Generated types will land here
     }
