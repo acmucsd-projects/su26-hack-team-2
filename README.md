@@ -53,7 +53,7 @@ src/ (where you'll do most of your coding)
   - reusable visual building blocks (Button, Card, etc.) used across the app
 
   features/
-  - mini-apps per feature (auth, clubs, events) so devs can work in parallel without conflicts
+  - mini-apps per feature so devs can work in parallel without conflicts
 
   lib/supabase/
   - code connecting your site to Supabase
@@ -79,9 +79,75 @@ supabase/
 - tsconfig.json / next-env.d.ts (typescript only): typescript config rules
 ```
 
-## Typescript Guides
+## Developer Guides
 
-[TypeScript for JavaScript Programmers](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+- [Backend Development](https://www.geeksforgeeks.org/blogs/backend-development/) - the important ones to read here are: HTTP, REST, npm, Git, GitHub, JavaScript, Node JS (Next.js is built on Node JS), PostgreSQL (Supabase is built on PostgreSQL)
+- [Git Branch Naming Conventions](https://conventionalbranch.org/) - what should i name my branch?
+- [Git Commit Conventions](https://www.conventionalcommits.org/en/v1.0.0/) - what should i write in my commit message?
+- [TypeScript for JavaScript Programmers (in 5 minutes)](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+- [Typescript for JavaScript Developers in 15min](https://youtu.be/JUORwadOU7s)
+- [W3 React Tutorial](https://www.w3schools.com/React/Default.ASP)
+- [ALL React Hooks Explained in 12 Minutes](https://youtu.be/LOH1l-MP_9k) - quick overview of hooks
+- [Master React Hooks in easy way | useEffect](https://youtu.be/YxkcMszKEYY) - deep dive into useEffect hook
+- [Reusing Logic with Custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks) - how to make your own hook
+- [Pages and Layouts](https://nextjs.org/docs/pages/building-your-application/routing/pages-and-layouts#index-routes) - how to create pages and use layouts (page templates) in Next.js
+- [Learn CSS](https://web.dev/learn/css/welcome) - this is a good reference
+- [Styling with Tailwind CSS](https://tailwindcss.com/docs/styling-with-utility-classes#overview) - how to use it
+- [Tailwind CSS Cheat Sheet](https://www.creative-tim.com/twcomponents/cheatsheet)
+- [Understanding SQL Migrations: Your Database, Layer by Layer](https://sql-page.com/your-first-sql-website/migrations) - what are database migrations and how to use them?
+- [Supabase Local Development & CLI](https://supabase.com/docs/guides/cli) - how to develop with supabase locally
+- [Docker Desktop](https://docs.docker.com/desktop/) - needed to run supabase locally
+- [Supabase Database Migrations](https://supabase.com/docs/guides/deployment/database-migrations) - (put npx before each supabase command) commands to make changes to the database schemas (and avoid conflicts with other devs automatically)
 
-[Typescript for Javascript Developers in 15min](https://youtu.be/JUORwadOU7s)
+Also take note of the "scripts" object in `package.json` which allow you to run commands like `npm run dev` or `npm run gen-types` without having to remember the full command. You might find it useful to use VSCode extensions, use auto-formatting on save, and turn on word wrap (especially for Tailwind CSS).
 
+Backend Development Flow:
+```
+Pull latest changes from main
+    ↓
+Navigate to/create a branch as needed (from main)
+    ↓
+Apply any new migrations
+    ↓
+Generate updated TypeScript types (if needed: npm run gen-types)
+    ↓
+Begin implementing your feature
+    ↓
+If schema changes are needed:
+    Create a new migration (file)
+        ↓
+    Apply the migration 
+        ↓
+    Generate updated TypeScript types
+        ↓
+    Commit migration + types + code
+    ↓
+Run npm run dev and npm run lint to test and lint your changes
+    ↓
+Push your (branched) changes to GitHub
+    ↓
+(optional) Create a pull request to merge your changes into main
+```
+
+Example supabase client call (get all events and display them on an events page):
+```ts
+// src/app/events/page.tsx
+import { createClient } from '@/lib/supabase/server'
+
+export default async function EventsPage() {
+  const supabase = createClient()
+  const { data: events } = await supabase
+    .from('events')
+    .select('*')
+    .order('start_time')
+
+  return (
+    <div>
+      <h1>Events</h1>
+      {events?.map(event => (
+        <div key={event.id}>{event.title}</div>
+      ))}
+    </div>
+  )
+}
+```
