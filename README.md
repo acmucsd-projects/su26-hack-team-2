@@ -98,11 +98,16 @@ supabase/
 - [Supabase Local Development & CLI](https://supabase.com/docs/guides/cli) - how to develop with supabase locally
 - [Docker Desktop](https://docs.docker.com/desktop/) - needed to run supabase locally
 - [Supabase Database Migrations](https://supabase.com/docs/guides/deployment/database-migrations) - (put npx before each supabase command) commands to make changes to the database schemas (and avoid conflicts with other devs automatically)
+- [Google Calendar API overview](https://developers.google.com/workspace/calendar/api/guides/overview)
 
 Also take note of the "scripts" object in `package.json` which allow you to run commands like `npm run dev` or `npm run gen-types` without having to remember the full command. You might find it useful to use VSCode extensions, use auto-formatting on save, and turn on word wrap (especially for Tailwind CSS).
 
 Backend Development Flow:
 ```
+Launch Docker
+    ↓
+npx supabase start
+    ↓
 Pull latest changes from main
     ↓
 Navigate to/create a branch as needed (from main)
