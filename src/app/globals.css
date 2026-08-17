@@ -5,6 +5,13 @@
   --foreground: #171717;
 }
 
+@theme {
+  --color-navy: #3E4E66;
+  --color-sand: #D8C3AA;
+  --color-cream: #F8F8F3;
+  --color-butter: #FFF0B5;
+  --color-soft-blue: #C3DBE7;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
