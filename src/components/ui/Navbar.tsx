@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Logo from './Logo';
 
-const NAV_STYLES = 'flex items-center justify-between px-8 py-4 bg-navy';
+const NAV_STYLES = 'flex items-center justify-between w-full px-8 py-4 bg-navy';
 const NAV_LIST_STYLES = 'flex gap-6 list-none';
 const NAV_LINK_STYLES = 'text-cream hover:opacity-80';
 const AUTH_BUTTONS_WRAPPER_STYLES = 'flex gap-3';
