@@ -37,21 +37,21 @@ export type Database = {
       users: {
         Row: {
           created_at: string
-          first_name: string | null
+          first_name: string
           id: string
-          last_name: string | null
+          last_name: string
         }
         Insert: {
           created_at?: string
-          first_name?: string | null
+          first_name: string
           id: string
-          last_name?: string | null
+          last_name: string
         }
         Update: {
           created_at?: string
-          first_name?: string | null
+          first_name?: string
           id?: string
-          last_name?: string | null
+          last_name?: string
         }
         Relationships: []
       }
