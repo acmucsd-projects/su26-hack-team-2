@@ -6,11 +6,11 @@
 }
 
 @theme {
-  --color-navy: #3E4E66;
-  --color-sand: #D8C3AA;
-  --color-cream: #F8F8F3;
-  --color-butter: #FFF0B5;
-  --color-skyblue: #C3DBE7;
+  --color-navy: #3e4e66;
+  --color-butter: #fff0b5;
+  --color-sky: #c3dbe7;
+  --color-cream: #f8f8f3;
+  --color-sand: #d8c3aa; 
 }
 
 @theme inline {
