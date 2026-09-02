@@ -16,7 +16,9 @@ const sizeStyles: Record<CardSize, string> = {
 const variantStyles: Record<CardVariant, string> = {
   sky: "bg-sky text-navy",
   butter: "bg-butter text-navy",
-  cream: "bg-cream text-navy",
+  // "cream" is the warm tan card background from the dashboard mockup, not
+  // the near-white --color-cream token (that one's the page background).
+  cream: "bg-tan text-navy",
   navy: "bg-navy text-cream",
 };
 
