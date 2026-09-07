@@ -34,27 +34,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      users: {
-        Row: {
-          created_at: string
-          first_name: string
-          id: string
-          last_name: string
-        }
-        Insert: {
-          created_at?: string
-          first_name: string
-          id: string
-          last_name: string
-        }
-        Update: {
-          created_at?: string
-          first_name?: string
-          id?: string
-          last_name?: string
-        }
-        Relationships: []
-      }
       club_members: {
         Row: {
           club_id: string
@@ -154,6 +133,74 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      transactions: {
+        Row: {
+          amount: number
+          category: string
+          club_id: string
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          paid_by: string
+          transaction_date: string
+          type: string
+        }
+        Insert: {
+          amount: number
+          category: string
+          club_id: string
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id?: string
+          paid_by: string
+          transaction_date?: string
+          type: string
+        }
+        Update: {
+          amount?: number
+          category?: string
+          club_id?: string
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          paid_by?: string
+          transaction_date?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_club_id_fkey"
+            columns: ["club_id"]
+            isOneToOne: false
+            referencedRelation: "clubs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      users: {
+        Row: {
+          created_at: string
+          first_name: string
+          id: string
+          last_name: string
+        }
+        Insert: {
+          created_at?: string
+          first_name: string
+          id: string
+          last_name: string
+        }
+        Update: {
+          created_at?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+        }
+        Relationships: []
       }
     }
     Views: {
