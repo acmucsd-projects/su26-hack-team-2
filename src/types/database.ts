@@ -163,6 +163,53 @@ export type Database = {
           },
         ]
       }
+      transactions: {
+        Row: {
+          amount: number
+          category: string
+          club_id: string
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          paid_by: string
+          transaction_date: string
+          type: string
+        }
+        Insert: {
+          amount: number
+          category: string
+          club_id: string
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id?: string
+          paid_by: string
+          transaction_date?: string
+          type: string
+        }
+        Update: {
+          amount?: number
+          category?: string
+          club_id?: string
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          paid_by?: string
+          transaction_date?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_club_id_fkey"
+            columns: ["club_id"]
+            isOneToOne: false
+            referencedRelation: "clubs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       users: {
         Row: {
           created_at: string
