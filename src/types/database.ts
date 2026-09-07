@@ -34,27 +34,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      users: {
-        Row: {
-          created_at: string
-          first_name: string
-          id: string
-          last_name: string
-        }
-        Insert: {
-          created_at?: string
-          first_name: string
-          id: string
-          last_name: string
-        }
-        Update: {
-          created_at?: string
-          first_name?: string
-          id?: string
-          last_name?: string
-        }
-        Relationships: []
-      }
       club_members: {
         Row: {
           club_id: string
@@ -154,6 +133,27 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      users: {
+        Row: {
+          created_at: string
+          first_name: string
+          id: string
+          last_name: string
+        }
+        Insert: {
+          created_at?: string
+          first_name: string
+          id: string
+          last_name: string
+        }
+        Update: {
+          created_at?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+        }
+        Relationships: []
       }
     }
     Views: {
