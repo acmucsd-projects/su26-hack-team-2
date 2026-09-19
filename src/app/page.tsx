@@ -1,13 +1,13 @@
-import Image from "next/image";
 import Navbar from '@/components/ui/Navbar';
+import Hero from '@/components/ui/Hero';
+import FeatureGrid from '@/components/ui/FeatureGrid';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 bg-zinc-50 font-sans dark:bg-black">
-      <Navbar variant='landing' />
-      <main className="flex flex-1 items-center justify-center">
-        <h1>hello team</h1>
-      </main>
+    <div className="flex flex-col flex-1">
+      <Navbar variant="landing" />
+      <Hero />
+      <FeatureGrid />
     </div>
   );
 }
