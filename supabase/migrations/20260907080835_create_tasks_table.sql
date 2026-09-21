@@ -10,7 +10,21 @@ create table public.tasks (
     created_at timestamptz not null default now()
 );
 
+create index tasks_club_id_idx on public.tasks (club_id);
+
 alter table public.tasks enable row level security;
+
+grant select, insert, update, delete on public.tasks to authenticated;
+
+grant select on public.club_members to authenticated;
+
+alter table public.club_members enable row level security;
+
+create policy "Users can view their own memberships"
+on public.club_members
+for select
+to authenticated
+using (user_id = (select auth.uid()));
 
 create policy "Club members can view tasks"
 on public.tasks
@@ -19,7 +33,7 @@ to authenticated
 using (
     exists (
         select 1 from public.club_members cm
-        where cm.club_id = tasks.club_id and cm.user_id = auth.uid()
+        where cm.club_id = tasks.club_id and cm.user_id = (select auth.uid())
     )
 );
 
@@ -30,13 +44,13 @@ to authenticated
 using (
     exists (
         select 1 from public.club_members cm
-        where cm.club_id = tasks.club_id and cm.user_id = auth.uid()
+        where cm.club_id = tasks.club_id and cm.user_id = (select auth.uid())
     )
 )
 with check (
     exists (
         select 1 from public.club_members cm
-        where cm.club_id = tasks.club_id and cm.user_id = auth.uid()
+        where cm.club_id = tasks.club_id and cm.user_id = (select auth.uid())
     )
 );
 
@@ -45,11 +59,11 @@ on public.tasks
 for insert
 to authenticated
 with check (
-    created_by = auth.uid()
+    created_by = (select auth.uid())
     and exists (
         select 1 from public.club_members cm
         where cm.club_id = tasks.club_id
-          and cm.user_id = auth.uid()
+          and cm.user_id = (select auth.uid())
           and cm.role = 'admin'
     )
 );
@@ -62,7 +76,7 @@ using (
     exists (
         select 1 from public.club_members cm
         where cm.club_id = tasks.club_id
-          and cm.user_id = auth.uid()
+          and cm.user_id = (select auth.uid())
           and cm.role = 'admin'
     )
 );
