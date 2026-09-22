@@ -8,7 +8,7 @@ type StatInlineItem = {
 const VALUE_STYLES = 'text-2xl font-bold text-navy';
 const LABEL_STYLES = 'text-sm text-ash';
 const GROUP_STYLES = 'flex flex-wrap items-stretch gap-6';
-const DIVIDER_STYLES = 'hidden sm:block w-px self-stretch bg-light-gray';
+const DIVIDER_STYLES = 'hidden sm:block w-[2px] self-stretch bg-navy';
 
 export function StatInline({ value, label }: StatInlineItem) {
   return (

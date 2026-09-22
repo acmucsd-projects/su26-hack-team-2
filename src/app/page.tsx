@@ -1,14 +1,13 @@
 import Navbar from '@/components/ui/Navbar';
-import Hero from '@/components/ui/Hero';
-import FeatureGrid from '@/components/ui/FeatureGrid';
-import CalendarTestPage from './calendar-test/page';
+import LandingPage from './landing/LandingPage';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1">
-      <Navbar variant="landing" />
-      <Hero />
-      <FeatureGrid />
+    <div className="flex flex-col flex-1 bg-zinc-50 font-sans dark:bg-black">
+      {/* <main className="flex flex-1 items-center justify-center">
+        <h1>hello team</h1>
+      </main> */}
+      <LandingPage/>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Rocket, Calendar, BarChart3 } from 'lucide-react';
+import { Rocket, Calendar, BarChart } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import FeatCard from './FeatCard';
@@ -15,7 +15,7 @@ const FEATURES = [
     description: "Plan your events, understand your club's timelines, and manage deadlines.",
   },
   {
-    icon: <BarChart3 size={28} />,
+    icon: <BarChart size={28} />,
     title: 'Understand your Club',
     description: 'Know where your club funds are going, manage your board members, and more.',
   },
@@ -29,7 +29,7 @@ export default function FeatureGrid() {
           Everything your club needs to launch and run smoothly.
         </h2>
 
-        <Badge variant="role" className="h-auto gap-2 self-start bg-navy px-4 py-1.5 text-sm text-cream">
+        <Badge variant="role" className="h-auto gap-2 self-start bg-triton-blue px-4 py-1.5 text-sm text-cream">
           <span className="h-2 w-2 rounded-full bg-gold" aria-hidden="true" />
           Built by UCSD Students for UCSD Students
         </Badge>
