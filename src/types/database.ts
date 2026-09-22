@@ -90,35 +90,6 @@ export type Database = {
         }
         Relationships: []
       }
-      event_attendees: {
-        Row: {
-          created_at: string
-          event_id: string
-          status: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          event_id: string
-          status: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          event_id?: string
-          status?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "event_attendees_event_id_fkey"
-            columns: ["event_id"]
-            isOneToOne: false
-            referencedRelation: "events"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       events: {
         Row: {
           club_id: string
@@ -166,10 +137,6 @@ export type Database = {
       tasks: {
         Row: {
           assigned_to: string | null
-      transactions: {
-        Row: {
-          amount: number
-          category: string
           club_id: string
           created_at: string
           created_by: string
@@ -181,14 +148,6 @@ export type Database = {
         }
         Insert: {
           assigned_to?: string | null
-          id: string
-          paid_by: string
-          transaction_date: string
-          type: string
-        }
-        Insert: {
-          amount: number
-          category: string
           club_id: string
           created_at?: string
           created_by: string
@@ -200,14 +159,6 @@ export type Database = {
         }
         Update: {
           assigned_to?: string | null
-          id?: string
-          paid_by: string
-          transaction_date?: string
-          type: string
-        }
-        Update: {
-          amount?: number
-          category?: string
           club_id?: string
           created_at?: string
           created_by?: string
@@ -220,14 +171,6 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "tasks_club_id_fkey"
-          id?: string
-          paid_by?: string
-          transaction_date?: string
-          type?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "transactions_club_id_fkey"
             columns: ["club_id"]
             isOneToOne: false
             referencedRelation: "clubs"

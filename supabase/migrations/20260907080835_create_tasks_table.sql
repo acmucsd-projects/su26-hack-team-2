@@ -37,22 +37,33 @@ using (
     )
 );
 
-create policy "Club members can update tasks"
+create policy "Admins can update any task in their club"
 on public.tasks
 for update
 to authenticated
 using (
     exists (
         select 1 from public.club_members cm
-        where cm.club_id = tasks.club_id and cm.user_id = (select auth.uid())
+        where cm.club_id = tasks.club_id
+          and cm.user_id = (select auth.uid())
+          and cm.role = 'admin'
     )
 )
 with check (
     exists (
         select 1 from public.club_members cm
-        where cm.club_id = tasks.club_id and cm.user_id = (select auth.uid())
+        where cm.club_id = tasks.club_id
+          and cm.user_id = (select auth.uid())
+          and cm.role = 'admin'
     )
 );
+
+create policy "Members can update their own assigned tasks"
+on public.tasks
+for update
+to authenticated
+using (assigned_to = (select auth.uid()))
+with check (assigned_to = (select auth.uid()));
 
 create policy "Admins can create tasks"
 on public.tasks
