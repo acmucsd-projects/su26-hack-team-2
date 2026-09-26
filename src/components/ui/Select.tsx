@@ -9,7 +9,9 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
   function Select({ className, placeholder, children, ...props }, ref) {
     return (
       <div className='relative'>
-        <select ref={ref} className={cn(controlStyles, 'h-12 appearance-none pr-10', className)} {...props}>
+        <select ref={ref} 
+        defaultValue={placeholder && props.value === undefined ? '' : undefined} 
+        className={cn(controlStyles, 'h-12 appearance-none pr-10', className)} {...props}>
           {placeholder && <option value='' disabled>{placeholder}</option>}
           {children}
         </select>
