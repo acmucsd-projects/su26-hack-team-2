@@ -66,6 +66,7 @@ export default function ProgressBar(props: ProgressBarProps) {
               strokeLinecap="round"
               className="stroke-sky"
             />
+            {percentage > 0 && (
             <circle
               cx={CENTER}
               cy={CENTER}
@@ -77,6 +78,7 @@ export default function ProgressBar(props: ProgressBarProps) {
               transform={`rotate(-90 ${CENTER} ${CENTER})`}
               className="stroke-navy transition-all"
             />
+            )}
           </svg>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center">
