@@ -6,7 +6,7 @@ import { ActionTile } from "@/features/dashboard/components/ActionTile";
 
 export default function DashboardPage() {
   return (
-    <div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-8 py-10">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-8 py-10">
       <WelcomeBanner
         variant="butter"
         greeting="Welcome back, [Name]"

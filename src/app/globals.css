@@ -11,6 +11,8 @@
   --color-sky: #c3dbe7;
   --color-cream: #f8f8f3;
   --color-tan: #ece1d5;
+  --color-marigold: #e9c046;
+  --color-periwinkle: #6b93e6;
 }
 
 @theme inline {
@@ -18,13 +20,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-poppins);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
