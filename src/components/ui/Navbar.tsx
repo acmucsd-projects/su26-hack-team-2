@@ -48,7 +48,7 @@ export default function Navbar({
       )}
     >
       <div className="flex items-center gap-4">
-        <Logo />
+        <Logo variant={resolvedVariant} />
         <span className="h-6 w-px bg-navy/20" aria-hidden="true" />
         <ul className="flex list-none items-center gap-6">
           {NAV_LINKS.map(({ href, label, icon: Icon }) => {
