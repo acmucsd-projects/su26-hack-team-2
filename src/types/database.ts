@@ -90,35 +90,6 @@ export type Database = {
         }
         Relationships: []
       }
-      event_attendees: {
-        Row: {
-          created_at: string
-          event_id: string
-          status: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          event_id: string
-          status: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          event_id?: string
-          status?: string
-          user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "event_attendees_event_id_fkey"
-            columns: ["event_id"]
-            isOneToOne: false
-            referencedRelation: "events"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       events: {
         Row: {
           club_id: string
@@ -163,46 +134,43 @@ export type Database = {
           },
         ]
       }
-      transactions: {
+      tasks: {
         Row: {
-          amount: number
-          category: string
+          assigned_to: string | null
           club_id: string
           created_at: string
           created_by: string
           description: string | null
+          due_date: string | null
           id: string
-          paid_by: string
-          transaction_date: string
-          type: string
+          status: string
+          title: string
         }
         Insert: {
-          amount: number
-          category: string
+          assigned_to?: string | null
           club_id: string
           created_at?: string
           created_by: string
           description?: string | null
+          due_date?: string | null
           id?: string
-          paid_by: string
-          transaction_date?: string
-          type: string
+          status?: string
+          title: string
         }
         Update: {
-          amount?: number
-          category?: string
+          assigned_to?: string | null
           club_id?: string
           created_at?: string
           created_by?: string
           description?: string | null
+          due_date?: string | null
           id?: string
-          paid_by?: string
-          transaction_date?: string
-          type?: string
+          status?: string
+          title?: string
         }
         Relationships: [
           {
-            foreignKeyName: "transactions_club_id_fkey"
+            foreignKeyName: "tasks_club_id_fkey"
             columns: ["club_id"]
             isOneToOne: false
             referencedRelation: "clubs"
