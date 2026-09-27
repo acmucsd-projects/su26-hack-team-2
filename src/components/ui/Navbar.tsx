@@ -39,17 +39,21 @@ export default function Navbar({
 }: NavbarProps) {
   const pathname = usePathname();
   const resolvedVariant = variant ?? (pathname === "/" ? "transparent" : "cream");
+  const creamOnDark = resolvedVariant === "transparent";
 
   return (
     <nav
       className={cn(
-        "flex w-full items-center justify-between gap-6 px-8 py-4",
+        "flex h-(--navbar-height) w-full items-center justify-between gap-6 px-8",
         variantStyles[resolvedVariant]
       )}
     >
       <div className="flex items-center gap-4">
         <Logo variant={resolvedVariant} />
-        <span className="h-6 w-px bg-navy/20" aria-hidden="true" />
+        <span
+          className={cn("h-6 w-px bg-navy/20", creamOnDark && "dark:bg-cream/20")}
+          aria-hidden="true"
+        />
         <ul className="flex list-none items-center gap-6">
           {NAV_LINKS.map(({ href, label, icon: Icon }) => {
             const isActive = pathname === href || pathname?.startsWith(`${href}/`);
@@ -59,7 +63,8 @@ export default function Navbar({
                   href={href}
                   className={cn(
                     "flex items-center gap-1.5 font-semibold hover:opacity-80",
-                    isActive ? "text-blue-600" : "text-navy"
+                    isActive ? "text-blue-600" : "text-navy",
+                    !isActive && creamOnDark && "dark:text-cream"
                   )}
                 >
                   <Icon className="h-4 w-4" />
@@ -72,7 +77,7 @@ export default function Navbar({
       </div>
 
       <div className="flex items-center gap-4">
-        <SearchBar />
+        <SearchBar creamOnDark={creamOnDark} />
         {isAuthenticated ? (
           <AvatarMenu name={userName} imageUrl={userImageUrl} onSignOut={onSignOut} />
         ) : (
