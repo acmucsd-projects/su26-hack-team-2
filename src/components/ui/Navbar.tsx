@@ -31,19 +31,20 @@ type NavbarProps = {
 };
 
 export default function Navbar({
-  variant = "cream",
+  variant,
   isAuthenticated = false,
   userName,
   userImageUrl,
   onSignOut,
 }: NavbarProps) {
   const pathname = usePathname();
+  const resolvedVariant = variant ?? (pathname === "/" ? "transparent" : "cream");
 
   return (
     <nav
       className={cn(
         "flex w-full items-center justify-between gap-6 px-8 py-4",
-        variantStyles[variant]
+        variantStyles[resolvedVariant]
       )}
     >
       <div className="flex items-center gap-4">
