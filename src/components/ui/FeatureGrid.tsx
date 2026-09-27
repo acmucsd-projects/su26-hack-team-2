@@ -23,7 +23,7 @@ const FEATURES = [
 
 export default function FeatureGrid() {
   return (
-    <section className="bg-cream px-6 py-24 sm:px-12">
+    <section id="features" className="bg-cream px-6 py-24 sm:px-12">
       <div className="max-w-5xl mx-auto flex flex-col gap-8">
         <h2 className="text-4xl sm:text-5xl font-extrabold text-navy leading-tight max-w-3xl">
           Everything your club needs to launch and run smoothly.
@@ -40,7 +40,7 @@ export default function FeatureGrid() {
           ))}
         </div>
 
-        <Button href="/get-started" variant="primary" className="self-start">
+        <Button href="/login" variant="primary" className="self-start">
           Get Started
         </Button>
       </div>

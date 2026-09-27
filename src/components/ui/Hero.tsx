@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import StatInlineGroup from './StatInLineItem';
 
@@ -10,7 +11,7 @@ const STATS = [
 
 export default function Hero() {
   return (
-  <section className="relative overflow-hidden">
+  <section className="relative flex min-h-[calc(100svh-var(--navbar-height))] items-center overflow-hidden">
     <Image
       src="/BG.png"
       alt=""
@@ -37,7 +38,7 @@ export default function Hero() {
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
-        <Button href="/get-started" variant="primary">
+        <Button href="/login" variant="primary">
           Get Started
         </Button>
         <Button
@@ -51,6 +52,14 @@ export default function Hero() {
 
       <StatInlineGroup items={STATS} />
     </div>
+
+    <a
+      href="#features"
+      aria-label="Scroll to features"
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 text-navy hover:opacity-70"
+    >
+      <ChevronDown className="h-8 w-8" />
+    </a>
   </section>
     );
 }
