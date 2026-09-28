@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Logo from './Logo';
 import Avatar from './Avatar';
 import { Button } from './Button';
+import { signInWithGoogle } from '@/app/auth/actions';
 
 const NAV_STYLES = 'relative flex items-center justify-between w-full px-8 py-4 bg-navy';
 const NAV_LIST_STYLES = 'absolute left-1/2 -translate-x-1/2 flex gap-6 list-none';
@@ -58,8 +59,12 @@ export default function Navbar({ variant, userName, userImageUrl }: NavbarProps)
 
       {variant === 'landing' && (
         <div className={AUTH_BUTTONS_WRAPPER_STYLES}>
-          <Button variant='outlineInverted' size='sm'>Sign In</Button>
-          <Button variant='primary' size='sm'>Sign Up</Button>
+          <form action={signInWithGoogle}>
+            <Button type='submit' variant='outlineInverted' size='sm'>Sign In</Button>
+          </form>
+          <form action={signInWithGoogle}>
+            <Button type='submit' variant='primary' size='sm'>Sign Up</Button>
+          </form>
         </div>
       )}
       {variant !== 'landing' && (
