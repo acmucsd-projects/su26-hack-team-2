@@ -64,7 +64,7 @@ export default function ProgressBar(props: ProgressBarProps) {
               fill="none"
               strokeWidth={STROKE_WIDTH}
               strokeLinecap="round"
-              className="stroke-sky"
+              className="stroke-navy"
             />
             {percentage > 0 && (
             <circle
@@ -76,7 +76,7 @@ export default function ProgressBar(props: ProgressBarProps) {
               strokeLinecap="round"
               strokeDasharray={`${fillLength} ${CIRCUMFERENCE - fillLength}`}
               transform={`rotate(-90 ${CENTER} ${CENTER})`}
-              className="stroke-navy transition-all"
+              className="stroke-periwinkle transition-all"
             />
             )}
           </svg>
