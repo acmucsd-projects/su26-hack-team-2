@@ -1,9 +1,12 @@
 import { signInWithGoogle } from '@/app/auth/actions'
+import { Button } from '@/components/ui/Button'
 
 export function GoogleSignInButton() {
   return (
     <form action={signInWithGoogle}>
-      <button type="submit">Sign in with Google</button>
+      <Button type="submit" variant="solid" fullWidth>
+        Continue with Google
+      </Button>
     </form>
   )
 }
