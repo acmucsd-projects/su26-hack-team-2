@@ -51,7 +51,7 @@ export default function Avatar({ imageUrl, name, size='md', className }: AvatarP
 
   if (imageUrl) {
     return (
-      <div className={cn(styles, 'relative')}>
+      <div className={cn(styles, 'relative bg-transparent')}>
         <Image 
           src={imageUrl}
           alt={name ?? 'User avatar'}
