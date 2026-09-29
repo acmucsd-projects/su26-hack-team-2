@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Calendar, Home, User } from "lucide-react";
-import Logo from "./Logo";
-import { Button } from "./Button";
-import { SearchBar } from "./SearchBar";
 import { AvatarMenu } from "./AvatarMenu";
+import Logo from "./Logo";
+import { SearchBar } from "./SearchBar";
+import { Button } from "./Button";
 import { cn } from "@/lib/utils";
 
 export type NavbarVariant = "transparent" | "cream";
@@ -57,6 +57,7 @@ export default function Navbar({
         <ul className="flex list-none items-center gap-6">
           {NAV_LINKS.map(({ href, label, icon: Icon }) => {
             const isActive = pathname === href || pathname?.startsWith(`${href}/`);
+
             return (
               <li key={href}>
                 <Link
