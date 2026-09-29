@@ -54,7 +54,7 @@ const QUICK_ACTIONS = [
   { href: "/events/new", label: "Create an Event" },
   { href: "/clubs/new", label: "Start a Club" },
   { href: "/resources", label: "Resources and FAQ" },
-  { href: "/profile", label: "My Profile" },
+  { href: "/fundraising", label: "Fundraising and Finances" },
 ];
 
 const MY_CLUBS = [
@@ -63,82 +63,89 @@ const MY_CLUBS = [
     name: "Association for Computing and Machinery (ACM)",
     members: 5000,
     href: "/clubs/acm",
+    logo: "/acm-logo.png",
   },
   {
     id: "2",
     name: "Women in Computing (WiC)",
     members: 3000,
     href: "/clubs/wic",
+    logo: "/WIC-logo.png",
   },
   {
     id: "3",
     name: "Poker Club @ UCSD",
     members: 833,
     href: "/clubs/poker",
+    logo: "/poker-club-logo.png",
   },
 ];
 
 export default function DashboardPage() {
   return (
-    <div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-8 py-10">
-      <div>
-        <h1 className="text-3xl font-bold text-navy">
-          Good morning, <span className="text-amber-500">[Name]</span> 👋
-        </h1>
-        <p className="mt-1 text-navy/70">
-          Here&apos;s what&apos;s happening with your clubs.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-        <div className="flex flex-col gap-8 lg:col-span-2">
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {STATS.map((stat) => (
-              <StatCard key={stat.label} value={stat.value} label={stat.label} />
-            ))}
-          </div>
-
-          <SectionCard title="Upcoming Events" viewAllHref="/calendar">
-            <div className="divide-y divide-navy/10">
-              {UPCOMING_EVENTS.map((event) => (
-                <UpcomingEventItem
-                  key={event.id}
-                  month={event.month}
-                  day={event.day}
-                  name={event.name}
-                  club={event.club}
-                  time={event.time}
-                  location={event.location}
-                />
-              ))}
-            </div>
-          </SectionCard>
+    <div className="flex-1 bg-cream">
+      <div className="mx-auto flex max-w-[1440px] flex-col gap-5 px-8 py-10">
+        <div>
+          <h1 className="text-4xl font-bold text-navy">
+            Good morning, <span className="text-marigold">[Name]</span> 👋
+          </h1>
+          <p className="text-sm text-navy">
+            Here&apos;s what&apos;s happening with your clubs.
+          </p>
         </div>
 
-        <div className="flex flex-col gap-8">
-          <SectionCard title="Quick Actions">
-            <div className="flex flex-col gap-3">
-              {QUICK_ACTIONS.map((action) => (
-                <QuickActionLink key={action.href} href={action.href}>
-                  {action.label}
-                </QuickActionLink>
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-[3fr_2fr]">
+          <div className="flex flex-col gap-5">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {STATS.map((stat) => (
+                <StatCard key={stat.label} value={stat.value} label={stat.label} />
               ))}
             </div>
-          </SectionCard>
 
-          <SectionCard title="Manage Your Clubs" viewAllHref="/clubs">
-            <div className="flex flex-col gap-4">
-              {MY_CLUBS.map((club) => (
-                <MemberListItem
-                  key={club.id}
-                  avatarName={club.name}
-                  title={club.name}
-                  titleHref={club.href}
-                  subtitle={`${club.members.toLocaleString()} members`}
-                />
-              ))}
-            </div>
-          </SectionCard>
+            <SectionCard title="Upcoming Events" viewAllHref="/calendar" className="flex-1">
+              <div className="flex flex-1 flex-col justify-between gap-5">
+                {UPCOMING_EVENTS.map((event) => (
+                  <UpcomingEventItem
+                    key={event.id}
+                    month={event.month}
+                    day={event.day}
+                    name={event.name}
+                    club={event.club}
+                    time={event.time}
+                    location={event.location}
+                  />
+                ))}
+              </div>
+            </SectionCard>
+          </div>
+
+          <div className="flex flex-col gap-5">
+            <SectionCard title="Quick Links">
+              <div className="flex flex-col gap-1">
+                {QUICK_ACTIONS.map((action) => (
+                  <QuickActionLink key={action.href} href={action.href}>
+                    {action.label}
+                  </QuickActionLink>
+                ))}
+              </div>
+            </SectionCard>
+
+            <SectionCard title="Your Clubs" viewAllHref="/clubs" className="flex-1">
+              <div className="flex flex-col gap-4">
+                {MY_CLUBS.map((club) => (
+                  <MemberListItem
+                    key={club.id}
+                    avatarImageUrl={club.logo}
+                    avatarName={club.name}
+                    avatarClassName="rounded-lg"
+                    title={club.name}
+                    titleHref={club.href}
+                    subtitle={`${club.members.toLocaleString()} members`}
+                  />
+                ))}
+              </div>
+            </SectionCard>
+          </div>
         </div>
       </div>
     </div>
