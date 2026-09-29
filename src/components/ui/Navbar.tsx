@@ -1,17 +1,12 @@
-import Link from 'next/link'
-import Logo from './Logo';
-import Avatar from './Avatar';
-import { Button } from './Button';
-import { signInWithGoogle } from '@/app/auth/actions';
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Calendar, Home, User } from "lucide-react";
-import Logo from "./Logo";
-import { Button } from "./Button";
-import { SearchBar } from "./SearchBar";
 import { AvatarMenu } from "./AvatarMenu";
+import Logo from "./Logo";
+import { SearchBar } from "./SearchBar";
+import { Button } from "./Button";
 import { cn } from "@/lib/utils";
 
 export type NavbarVariant = "transparent" | "cream";
@@ -47,31 +42,6 @@ export default function Navbar({
   const creamOnDark = resolvedVariant === "transparent";
 
   return (
-    <nav className={NAV_STYLES}>
-      <Logo />
-
-      <ul className={NAV_LIST_STYLES}>
-        {links.map(({ href, label }) => (
-          <li key={href}>
-            <Link href={href} className={NAV_LINK_STYLES}>
-              {label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      {variant === 'landing' && (
-        <div className={AUTH_BUTTONS_WRAPPER_STYLES}>
-          <form action={signInWithGoogle}>
-            <Button type='submit' variant='outlineInverted' size='sm'>Sign In</Button>
-          </form>
-          <form action={signInWithGoogle}>
-            <Button type='submit' variant='primary' size='sm'>Sign Up</Button>
-          </form>
-        </div>
-      )}
-      {variant !== 'landing' && (
-        <Avatar name={userName} imageUrl={userImageUrl} size='md' />
     <nav
       className={cn(
         "flex h-(--navbar-height) w-full items-center justify-between gap-6 px-8",
@@ -87,6 +57,7 @@ export default function Navbar({
         <ul className="flex list-none items-center gap-6">
           {NAV_LINKS.map(({ href, label, icon: Icon }) => {
             const isActive = pathname === href || pathname?.startsWith(`${href}/`);
+
             return (
               <li key={href}>
                 <Link
