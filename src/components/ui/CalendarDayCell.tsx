@@ -9,9 +9,9 @@ export type CalendarEvent = {
 };
 
 const eventTypeStyles: Record<EventType, string> = {
-  meeting: 'bg-butter',
-  fundraising: 'bg-sky',
-  social: 'bg-sand',
+  meeting: 'bg-marigold',
+  fundraising: 'bg-periwinkle',
+  social: 'bg-navy',
 };
 
 type EventPillProps = {
@@ -28,7 +28,7 @@ function EventPill({ event }: EventPillProps) {
 }
 
 const baseStyles = 
-  'flex flex-col gap-1 p-2 border border-gray-200 h-[90px] sm:min-h-[110px] overflow-hidden cursor-pointer transition hover:bg-navy/5';
+  'flex flex-col gap-1 p-2 bg-white border border-gray-200 h-[90px] sm:min-h-[110px] overflow-hidden cursor-pointer transition hover:bg-navy/5';
 
 function cellStyles({
   isCurrentMonth,
