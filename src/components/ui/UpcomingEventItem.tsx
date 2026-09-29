@@ -20,15 +20,19 @@ export function UpcomingEventItem({
   className,
 }: UpcomingEventItemProps) {
   return (
-    <div className={cn("flex items-center gap-4 py-4 first:pt-0 last:pb-0", className)}>
-      <div className="flex h-[50px] w-[52px] shrink-0 flex-col items-center justify-center rounded-lg bg-butter leading-tight">
-        <span className="text-xs font-semibold text-navy uppercase">{month}</span>
-        <span className="text-base font-semibold text-navy">{day}</span>
+    <div className={cn("flex items-center gap-6", className)}>
+      <div className="w-12 shrink-0 text-center leading-tight">
+        <div className="text-xs font-semibold text-periwinkle uppercase">{month}</div>
+        <div className="text-2xl font-bold text-navy">{day}</div>
       </div>
-      <div className="min-w-0">
-        <p className="truncate font-semibold text-navy">{name}</p>
-        <p className="truncate text-sm text-navy/80">
-          {club} | {time} | {location}
+      <div className="min-w-0 text-navy">
+        <p className="truncate text-lg font-semibold">{name}</p>
+        <p className="truncate text-sm">
+          {club}
+          <span className="mx-2 border-l border-navy" />
+          {time}
+          <span className="mx-2 border-l border-navy" />
+          {location}
         </p>
       </div>
     </div>

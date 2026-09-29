@@ -11,7 +11,7 @@ export function QuickActionLink({ href, children, className }: QuickActionLinkPr
   return (
     <Link
       href={href}
-      className={cn("block text-sm font-medium text-navy hover:underline", className)}
+      className={cn("block text-lg text-periwinkle hover:underline", className)}
     >
       {children}
     </Link>
