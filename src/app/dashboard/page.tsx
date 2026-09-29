@@ -53,6 +53,7 @@ const UPCOMING_EVENTS = [
 const QUICK_ACTIONS = [
   { href: "/events/new", label: "Create an Event" },
   { href: "/clubs/new", label: "Start a Club" },
+  { href: "/fundraising", label: "Find Funding" },
   { href: "/resources", label: "Resources and FAQ" },
   { href: "/profile", label: "My Profile" },
 ];
