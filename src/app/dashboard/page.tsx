@@ -3,6 +3,7 @@ import { SectionCard } from "@/components/ui/SectionCard";
 import { UpcomingEventItem } from "@/components/ui/UpcomingEventItem";
 import { MemberListItem } from "@/components/ui/MemberListItem";
 import { QuickActionLink } from "@/components/ui/QuickActionLink";
+import { getUser } from "@/lib/supabase/session";
 
 const STATS = [
   { label: "Clubs you manage", value: 2 },
@@ -81,13 +82,21 @@ const MY_CLUBS = [
   },
 ];
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const user = await getUser();
+  const fullName =
+    user?.user_metadata?.full_name ??
+    user?.user_metadata?.name ??
+    user?.email?.split("@")[0] ??
+    "there";
+  const firstName = fullName.trim().split(/\s+/)[0] || "there";
+
   return (
     <div className="flex-1 bg-cream">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-5 px-8 py-10">
         <div>
           <h1 className="text-4xl font-bold text-navy">
-            Good morning, <span className="text-marigold">[Name]</span> 👋
+            Good morning, <span className="text-marigold">{firstName}</span> 👋
           </h1>
           <p className="text-sm text-navy">
             Here&apos;s what&apos;s happening with your clubs.

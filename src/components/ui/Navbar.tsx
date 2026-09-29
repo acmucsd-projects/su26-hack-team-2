@@ -49,7 +49,10 @@ export default function Navbar({
       )}
     >
       <div className="flex items-center gap-4">
-        <Logo variant={resolvedVariant} />
+        <Logo
+          variant={resolvedVariant}
+          href={isAuthenticated ? "/dashboard" : "/"}
+        />
         <span
           className={cn("h-6 w-px bg-navy/20", creamOnDark && "dark:bg-cream/20")}
           aria-hidden="true"

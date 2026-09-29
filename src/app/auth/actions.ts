@@ -5,7 +5,17 @@ import { headers } from 'next/headers'
 
 export async function signInWithGoogle() {
   const supabase = await createClient()
-  const origin = (await headers()).get('origin')
+  const requestHeaders = await headers()
+  const forwardedHost = requestHeaders.get('x-forwarded-host') ?? requestHeaders.get('host')
+  const origin =
+    requestHeaders.get('origin') ??
+    (forwardedHost
+      ? `${requestHeaders.get('x-forwarded-proto') ?? 'http'}://${forwardedHost}`
+      : null)
+
+  if (!origin) {
+    redirect('/login?error=missing_origin')
+  }
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
@@ -14,8 +24,10 @@ export async function signInWithGoogle() {
     },
   })
 
-  if (error) redirect('/?error=oauth_failed')
-  if (data.url) redirect(data.url)
+  if (error) redirect(`/login?error=${encodeURIComponent(error.message)}`)
+  if (!data.url) redirect('/login?error=oauth_url_missing')
+
+  redirect(data.url)
 }
 
 export async function signOut() {
