@@ -61,6 +61,13 @@ export type Database = {
             referencedRelation: "clubs"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "club_members_user_id_users_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
         ]
       }
       clubs: {
@@ -89,6 +96,35 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      event_attendees: {
+        Row: {
+          created_at: string
+          event_id: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_id: string
+          status: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          event_id?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_attendees_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       events: {
         Row: {
@@ -178,6 +214,53 @@ export type Database = {
           },
         ]
       }
+      transactions: {
+        Row: {
+          amount: number
+          category: string
+          club_id: string
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          paid_by: string
+          transaction_date: string
+          type: string
+        }
+        Insert: {
+          amount: number
+          category: string
+          club_id: string
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id?: string
+          paid_by: string
+          transaction_date?: string
+          type: string
+        }
+        Update: {
+          amount?: number
+          category?: string
+          club_id?: string
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          paid_by?: string
+          transaction_date?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_club_id_fkey"
+            columns: ["club_id"]
+            isOneToOne: false
+            referencedRelation: "clubs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       users: {
         Row: {
           created_at: string
@@ -204,7 +287,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_club_member: { Args: { p_club_id: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
