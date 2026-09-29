@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import Navbar from "@/components/ui/Navbar";
-import { getUser } from "@/lib/supabase/session";
 import { signOut } from "@/app/auth/actions";
+import { getUser } from "@/lib/supabase/session";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -29,6 +29,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const user = await getUser();
+  const userName =
+    user?.user_metadata?.full_name ??
+    user?.user_metadata?.name ??
+    user?.email?.split("@")[0];
 
   return (
     <html
@@ -38,9 +42,9 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <Navbar
-          isAuthenticated={!!user}
-          userName={user?.user_metadata.full_name}
-          userImageUrl={user?.user_metadata.avatar_url}
+          isAuthenticated={Boolean(user)}
+          userName={userName}
+          userImageUrl={user?.user_metadata?.avatar_url}
           onSignOut={signOut}
         />
         {children}
