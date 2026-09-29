@@ -9,7 +9,6 @@ import { cn } from '@/lib/utils';
 
 type MockEvent = CalendarEvent & { date: Date; time: string; club: string };
 
-// ponytail: mock data, swap for a Supabase query once events exist
 const events: MockEvent[] = [
   { id: '1', label: 'ACM Club Meeting', type: 'meeting', date: new Date(2026, 8, 15), time: '5:00 PM', club: 'ACM' },
   { id: '2', label: 'Fundraiser Planning', type: 'fundraising', date: new Date(2026, 8, 26), time: '12:00 PM - 1:00 PM', club: 'ACM' },
@@ -27,7 +26,6 @@ export function CalendarView() {
   const router = useRouter();
   const today = new Date();
   const [month, setMonth] = useState(() => new Date(today.getFullYear(), today.getMonth(), 1));
-  // ponytail: visual only, the grid is always month view
   const [view, setView] = useState<(typeof views)[number]>('Month');
 
   const y = month.getFullYear();

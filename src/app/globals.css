@@ -1,18 +1,27 @@
 @import "tailwindcss";
 
+/* Light-only for now: dark: styles apply only under a .dark class, which nothing sets. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --navbar-height: 5rem;
 }
 
 @theme {
-  --color-navy: #3e4e66;
+  --color-navy: #00274c;
   --color-butter: #fff0b5;
   --color-sky: #c3dbe7;
   --color-cream: #f8f8f3;
   --color-tan: #ece1d5;
   --color-marigold: #e9c046;
   --color-periwinkle: #6b93e6;
+  --color-sand: #d8c3aa;
+  --color-triton-blue: #4a90e2;
+  --color-gold: #fbbf24;
+  --color-ash: #6e6e6e;
+  --color-light-gray: #e6e6e6;
 }
 
 @theme inline {
