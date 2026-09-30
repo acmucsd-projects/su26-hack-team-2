@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache';
 import { createClient } from '@/lib/supabase/server';
+import type { Tables } from '@/types/database';
 
 export type CreateEventInput = {
   title: string;
@@ -13,16 +14,7 @@ export type CreateEventInput = {
   location: string;
 };
 
-export type EventRow = {
-  id: string;
-  title: string;
-  description: string | null;
-  club: string;
-  date: string;
-  start_time: string;
-  end_time: string;
-  location: string;
-};
+export type EventRow = Tables<'events'>;
 
 export type CreateEventResult =
   | { success: true; event: EventRow }
@@ -44,6 +36,12 @@ export async function createEvent(input: CreateEventInput): Promise<CreateEventR
   if (validationError) return { success: false, error: validationError };
 
   const supabase = await createClient();
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) return { success: false, error: 'You must be signed in to create an event.' };
 
   const { data, error } = await supabase
     .from('events')
@@ -51,9 +49,9 @@ export async function createEvent(input: CreateEventInput): Promise<CreateEventR
       title: input.title.trim(),
       description: input.description?.trim() || null,
       club_id: input.clubId,
-      date: input.date,
-      start_time: input.startTime,
-      end_time: input.endTime,
+      created_by: user.id,
+      start_time: `${input.date}T${input.startTime}:00`,
+      end_time: `${input.date}T${input.endTime}:00`,
       location: input.location.trim(),
     })
     .select()
@@ -64,5 +62,5 @@ export async function createEvent(input: CreateEventInput): Promise<CreateEventR
   revalidatePath('/dashboard');
   revalidatePath('/calendar');
 
-  return { success: true, event: data as EventRow };
+  return { success: true, event: data };
 }

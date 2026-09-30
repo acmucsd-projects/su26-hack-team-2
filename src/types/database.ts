@@ -35,24 +35,9 @@ export type Database = {
   public: {
     Tables: {
       club_members: {
-        Row: {
-          club_id: string
-          created_at: string
-          role: string
-          user_id: string
-        }
-        Insert: {
-          club_id: string
-          created_at?: string
-          role?: string
-          user_id: string
-        }
-        Update: {
-          club_id?: string
-          created_at?: string
-          role?: string
-          user_id?: string
-        }
+        Row: { club_id: string; created_at: string; role: string; user_id: string }
+        Insert: { club_id: string; created_at?: string; role?: string; user_id: string }
+        Update: { club_id?: string; created_at?: string; role?: string; user_id?: string }
         Relationships: [
           {
             foreignKeyName: "club_members_club_id_fkey"
@@ -98,24 +83,9 @@ export type Database = {
         Relationships: []
       }
       event_attendees: {
-        Row: {
-          created_at: string
-          event_id: string
-          status: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          event_id: string
-          status: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          event_id?: string
-          status?: string
-          user_id?: string
-        }
+        Row: { created_at: string; event_id: string; status: string; user_id: string }
+        Insert: { created_at?: string; event_id: string; status: string; user_id: string }
+        Update: { created_at?: string; event_id?: string; status?: string; user_id?: string }
         Relationships: [
           {
             foreignKeyName: "event_attendees_event_id_fkey"
@@ -262,24 +232,9 @@ export type Database = {
         ]
       }
       users: {
-        Row: {
-          created_at: string
-          first_name: string
-          id: string
-          last_name: string
-        }
-        Insert: {
-          created_at?: string
-          first_name: string
-          id: string
-          last_name: string
-        }
-        Update: {
-          created_at?: string
-          first_name?: string
-          id?: string
-          last_name?: string
-        }
+        Row: { created_at: string; first_name: string; id: string; last_name: string }
+        Insert: { created_at?: string; first_name: string; id: string; last_name: string }
+        Update: { created_at?: string; first_name?: string; id?: string; last_name?: string }
         Relationships: []
       }
     }
@@ -287,7 +242,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      is_club_member: { Args: { p_club_id: string }; Returns: boolean }
+      is_club_member: {
+        Args: { p_club_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
@@ -423,4 +381,3 @@ export const Constants = {
     Enums: {},
   },
 } as const
-
