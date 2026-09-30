@@ -3,6 +3,8 @@ import { SectionCard } from "@/components/ui/SectionCard";
 import { UpcomingEventItem } from "@/components/ui/UpcomingEventItem";
 import { MemberListItem } from "@/components/ui/MemberListItem";
 import { QuickActionLink } from "@/components/ui/QuickActionLink";
+import { getUser } from "@/lib/supabase/session";
+import { CLUBS } from "@/features/club/data/clubs";
 
 const STATS = [
   { label: "Clubs you manage", value: 2 },
@@ -57,37 +59,21 @@ const QUICK_ACTIONS = [
   { href: "/fundraising", label: "Fundraising and Finances" },
 ];
 
-const MY_CLUBS = [
-  {
-    id: "1",
-    name: "Association for Computing and Machinery (ACM)",
-    members: 5000,
-    href: "/clubs/acm",
-    logo: "/acm-logo.png",
-  },
-  {
-    id: "2",
-    name: "Women in Computing (WiC)",
-    members: 3000,
-    href: "/clubs/wic",
-    logo: "/WIC-logo.png",
-  },
-  {
-    id: "3",
-    name: "Poker Club @ UCSD",
-    members: 833,
-    href: "/clubs/poker",
-    logo: "/poker-club-logo.png",
-  },
-];
+export default async function DashboardPage() {
+  const user = await getUser();
+  const fullName =
+    user?.user_metadata?.full_name ??
+    user?.user_metadata?.name ??
+    user?.email?.split("@")[0] ??
+    "there";
+  const firstName = fullName.trim().split(/\s+/)[0] || "there";
 
-export default function DashboardPage() {
   return (
     <div className="flex-1 bg-cream">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-5 px-8 py-10">
         <div>
           <h1 className="text-4xl font-bold text-navy">
-            Good morning, <span className="text-marigold">[Name]</span> 👋
+            Good morning, <span className="text-marigold">{firstName}</span> 👋
           </h1>
           <p className="text-sm text-navy">
             Here&apos;s what&apos;s happening with your clubs.
@@ -132,14 +118,14 @@ export default function DashboardPage() {
 
             <SectionCard title="Your Clubs" viewAllHref="/clubs" className="flex-1">
               <div className="flex flex-col gap-4">
-                {MY_CLUBS.map((club) => (
+                {CLUBS.map((club) => (
                   <MemberListItem
-                    key={club.id}
+                    key={club.slug}
                     avatarImageUrl={club.logo}
                     avatarName={club.name}
                     avatarClassName="rounded-lg"
                     title={club.name}
-                    titleHref={club.href}
+                    titleHref={`/clubs/${club.slug}`}
                     subtitle={`${club.members.toLocaleString()} members`}
                   />
                 ))}
