@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Calendar, Home, User } from "lucide-react";
+import { Calendar, Home, User, Users } from "lucide-react";
 import { AvatarMenu } from "./AvatarMenu";
 import Logo from "./Logo";
 import { SearchBar } from "./SearchBar";
@@ -15,6 +15,7 @@ const NAV_LINKS = [
   { href: "/dashboard", label: "Home", icon: Home },
   { href: "/clubs", label: "My Clubs", icon: User },
   { href: "/calendar", label: "Calendar", icon: Calendar },
+  { href: "/teams", label: "Teams", icon: Users },
 ];
 
 const variantStyles: Record<NavbarVariant, string> = {
