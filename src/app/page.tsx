@@ -1,5 +1,11 @@
 import LandingPage from './landing/LandingPage';
 
 export default function Home() {
-  return <LandingPage />;
+
+  return (
+    <div className="flex flex-1 flex-col font-sans">
+      <LandingPage />
+      <Footer />
+    </div>
+  );
 }
